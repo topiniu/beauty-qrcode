@@ -29,6 +29,12 @@ export interface QRCodeComponentProps {
   moduleClassName?: string;
 
   /**
+   * Rendering strategy for the QR code output
+   * @default 'dom'
+   */
+  renderer?: 'dom' | 'svg';
+
+  /**
    * Enable/disable animation
    * @default true
    */
@@ -37,5 +43,4 @@ export interface QRCodeComponentProps {
 
 declare const QRCodeComponent: React.FC<QRCodeComponentProps>;
 
-export default QRCodeComponent;
 export { QRCodeComponent };
