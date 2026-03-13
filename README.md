@@ -123,11 +123,34 @@ npm run test:ci
 npm run build:lib
 ```
 
-## Release Checklist
+## Manual Release
 
-- `npm run test:ci`
-- `npm run build:lib`
-- `npm run pack:check`
+Authenticate with npm if needed:
+
+```bash
+npm login
+```
+
+Then release with a single command:
+
+```bash
+npm run release -- patch
+```
+
+The release command will:
+
+1. bump the version with `npm version`
+2. run `npm run test:ci`
+3. run `npm run build:lib`
+4. run `npm run pack:check`
+5. publish to npm
+
+Supported targets:
+
+- `npm run release -- patch`
+- `npm run release -- minor`
+- `npm run release -- major`
+- `npm run release -- 0.2.1`
 
 ## License
 
