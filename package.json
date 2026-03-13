@@ -1,11 +1,20 @@
 {
   "name": "beauty-qrcode",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
-  "description": "A beautiful, animated QR code component for React with customizable styling and smooth animations",
-  "keywords": ["qrcode", "react", "component", "animated", "beautiful", "ui"],
+  "description": "Animated React QR code component with DOM and SVG renderers.",
+  "keywords": [
+    "qrcode",
+    "qr-code",
+    "react",
+    "react-component",
+    "svg",
+    "animation",
+    "ui"
+  ],
   "author": "Beck Xiong <beckxiong@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/topiniu/beauty-qrcode#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/topiniu/beauty-qrcode.git"
@@ -14,11 +23,15 @@
     "url": "https://github.com/topiniu/beauty-qrcode/issues"
   },
   "dependencies": {
+    "animejs": "^3.2.2",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "animejs": "^3.2.2",
-    "qrcode": "^1.5.4",
+    "microbundle": "^0.15.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
@@ -29,8 +42,44 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:lib": "microbundle --format modern,cjs --external react,react-dom"
+    "clean:dist": "node scripts/clean-dist.mjs",
+    "test:ci": "react-scripts test --watch=false",
+    "build:types": "node scripts/copy-types.mjs",
+    "build:lib": "npm run clean:dist && microbundle --format modern,cjs --external react,react-dom && npm run build:types",
+    "pack:check": "npm pack --dry-run",
+    "prepublishOnly": "npm run test:ci && npm run build:lib"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "source": "src/lib/index.js",
+  "files": [
+    "dist/index.js",
+    "dist/index.js.map",
+    "dist/index.mjs",
+    "dist/index.mjs.map",
+    "dist/index.d.ts",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "engines": {
+    "node": ">=16.20.0"
+  },
+  "packageManager": "npm@8.19.4",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -48,30 +97,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "microbundle": "^0.15.1"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "src/lib/index.d.ts",
-  "source": "src/lib/index.js",
-  "files": [
-    "dist",
-    "src/lib/index.d.ts"
-  ],
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "default": "./dist/index.mjs"
-    },
-    "./package.json": "./package.json"
-  },
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
   }
 }
