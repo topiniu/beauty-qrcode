@@ -6,7 +6,6 @@
   "keywords": ["qrcode", "react", "component", "animated", "beautiful", "ui"],
   "author": "Beck Xiong <beckxiong@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/topiniu/beauty-qrcode#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/topiniu/beauty-qrcode.git"
