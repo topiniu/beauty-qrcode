@@ -1,5 +1,32 @@
 # beauty-qrcode
 
+一个带展开动画的 React 二维码组件。DOM Grid 与 SVG 共用一套 API，可以逐格调整样式，也可以关闭动画。
+
+![beauty-qrcode 本地演示：输入内容、切换 DOM / SVG、重播动画](docs/media/demo.png)
+
+<details>
+<summary>看一段真实运行的动画</summary>
+
+![SVG 二维码从中心展开的录屏](docs/media/animation.gif)
+
+本地浏览器实录，示例内容为 `https://example.com`。GIF 来自浏览器捕获帧，帧率受采集限制。
+</details>
+
+### 这个组件在解决什么
+
+二维码通常只是一个静态结果。这个小项目把生成过程变成可观察的交互：根据每个方块到中心的距离安排出场时间，同时提供两种渲染方式，便于比较动画控制与节点数量之间的取舍。
+
+### 运行演示
+
+```bash
+npm ci
+npm start
+```
+
+演示页支持输入、渲染切换、动画开关与重播；初始动画设置尊重系统的减少动态效果偏好。只使用本地输入，不依赖后端服务。`.env.development` 将本地资源路径设为 `/`，避免 npm 包的 GitHub 主页地址影响开发服务器。
+
+---
+
 `beauty-qrcode` is a React QR code component with two rendering backends:
 
 - `dom`: animated grid-based rendering for highly stylized effects
